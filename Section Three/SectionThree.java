@@ -1,7 +1,6 @@
 public class SectionThree {
     public static void main(String[] args) {
-        // ************************* TOPIC ONE: Thread Naming
-        // *************************//
+        // ************************* TOPIC ONE: Thread Naming *************************//
         // ! 1- By Passing Name On Creation
         Thread t1 = new Thread("First Thread");
         // System.out.println(t1.getName());
@@ -17,8 +16,7 @@ public class SectionThree {
         Thread t2 = new Thread(task2, "Runnable Thread2");
         Thread t3 = new Thread(task3, "Runnable Thread3");
 
-        // ************************* TOPIC TWO: Thread Priority
-        // *************************//
+        // ************************* TOPIC TWO: Thread Priority *************************//
         /*
          * ? Determines Which Thread Should Be Executed First When Multiple Threads are
          * ready to execute
@@ -34,8 +32,7 @@ public class SectionThree {
         t2.start();
         t3.start();
 
-        // ************************* TOPIC THREE: Thread States
-        // *************************//
+        // ************************* TOPIC THREE: Thread States *************************//
         Thread threadState = new Thread(() -> {
             System.out.println("State Inside run(): " + Thread.currentThread().getState());
         });
@@ -56,8 +53,7 @@ public class SectionThree {
 
         System.out.println("Thread State After Finishing: " + threadState.getState());
 
-        // ************************* TOPIC FOUR: Thread Group
-        // *************************//
+        // ************************* TOPIC FOUR: Thread Group *************************//
         // ? Used For Organization and hierarchical thread management
 
         // Decaler Thread group using ThreadGroup class;
@@ -86,5 +82,25 @@ public class SectionThree {
         // ! THREAD GROUP HAS SOME HELPFULL METHODS
         group.activeCount();
         group.list();
+
+        // ******************** USER THREAD EXAMPLE ************************** //
+        Thread userThread = new Thread(()->{
+            System.out.println("THIS IS USER THREAD!");
+        });
+        userThread.start();
+
+        // ******************** DAEMON THREAD EXAMPLE ************************** //
+        Thread daemon = new Thread(()->{
+            try {
+                Thread.sleep(5000);
+                System.out.println("THIS IS DAEMON THREAD");
+            } catch (InterruptedException e) {
+                System.out.println("EN ERROR OCCURED ON DAEMON THREAD");
+            }
+        });
+
+        // ! we can make daemon thread using setDaemon(true)
+        daemon.setDaemon(true);
+        daemon.start();
     }
 }
